@@ -67,16 +67,33 @@ acc_train_history=[]
 acc_test_history=[]
 
 for k in range(n_epochs):
-    print(f'epoch{k}/{n_epochs}')
+    print(f'epoch{k+1}/{n_epochs}',end=':',fresh=True)
 
     time_start=time.time()
     loss_train=model.train(models,dataloader_train,loss_fn,optimiser)
     time_end=time.time()
     loss_train_history.append(loss_train)
-    print(f'train loss : {loss_train:.3f}({time_end-time_start})',',')
-    loss_test=model.train(models,dataloader_train,loss_fn,optimiser)
+    print(f'train loss : {loss_train:.3f}({time_end-time_start:.1f}s)',end=',')
+
+    time_start=time.time()
+    loss_test=model.train(models,dataloader_test,loss_fn)
+    time_end=time.time()
     loss_test_history.append(loss_test)
-    print(f'train loss : {loss_test}',',')
+    print(f'test loss : {loss_test:.3f}({time_end-time_start:.1f}s)',end=',')
+
+    if(k+1)%5==0:
+
+        time_start=time.time()
+        loss_train=model.train(models,dataloader_train,loss_fn,optimiser)
+        time_end=time.time()
+        loss_train_history.append(loss_train)
+        print(f'train loss : {loss_train:.3f}({time_end-time_start:.1f}s)',end=',')
+
+        time_start=time.time()
+        loss_test=model.train(models,dataloader_test,loss_fn)
+        time_end=time.time()
+        loss_test_history.append(loss_test)
+        print(f'test loss : {loss_test:.3f}({time_end-time_start:.1f}s)',end=',')
 
     acc_train=model.test_accuracy(models,dataloader_train)
     acc_train_history.append(acc_train)
