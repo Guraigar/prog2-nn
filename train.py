@@ -119,3 +119,4 @@ for k in range(n_epochs):
     plt.show()
 
     #testてすとテスト
+    #saranituika
