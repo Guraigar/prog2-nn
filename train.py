@@ -117,3 +117,5 @@ for k in range(n_epochs):
     plt.legend()
     plt.grid()
     plt.show()
+
+    #testてすとテスト
