@@ -76,7 +76,7 @@ for k in range(n_epochs):
     print(f'train loss : {loss_train:.3f}({time_end-time_start:.1f}s)',end=',')
 
     time_start=time.time()
-    loss_test=model.train(models,dataloader_test,loss_fn)
+    loss_test=model.train(models,dataloader_test,loss_fn,optimiser)
     time_end=time.time()
     loss_test_history.append(loss_test)
     print(f'test loss : {loss_test:.3f}({time_end-time_start:.1f}s)',end=',')
